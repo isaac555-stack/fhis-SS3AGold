@@ -1,0 +1,62 @@
+<%- include("partials/sidebar.ejs") %>
+<main>
+  <h1>Edit Students</h1>
+  <!-- Search Bar -->
+  <form action="/view-student/classId" method="GET" aria-label="Search or Select Class">
+    <% if (!locals.students && !locals.classId ) { %>
+      <label for="viewstudent-class">Select Class:</label>
+      <select id="viewstudent-class" name="classId" required>
+        <option value="" disabled selected>Select Class</option>
+        <% classes.forEach(function(classItem) { %>
+        <option value="<%= classItem.id %>"><%= classItem.name %></option>
+        <% }) %>
+      </select>
+      <br /><br />
+      <button type="submit" class="btn btn-primary">Submit</button>
+    <% } else { %>
+      <input type="hidden" name="classId" value="<%= classId %>">
+      <label for="viewstudent-search" class="visually-hidden">Search by Name</label>
+      <input
+        type="text"
+        id="viewstudent-search"
+        name="search"
+        placeholder="Search by Name"
+      />
+      <button type="submit">Search</button>
+    </form>
+    <section aria-label="Edit Student Table">
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Class</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% students.forEach(student => { %>
+          <tr>
+            <td><%= student.id%></td>
+            <td><%= student.name %></td>
+            <td><%= student.class_name %></td>
+            <td id="action">
+              <a href="/edit-student/<%= student.id %>">Edit</a>
+              <form
+                action="/delete-student/<%= student.id %>"
+                method="POST"
+                style="display: inline"
+              >
+                <button type="submit" id="deletebtn" onclick="return confirm('Are you sure? It is irreversible!')">
+                  Delete
+                </button>
+              </form>
+            </td>
+          </tr>
+          <% }) %>
+        </tbody>
+      </table>
+    </section>
+    <% } %>
+</main>
+<%- include("partials/footer.ejs") %>

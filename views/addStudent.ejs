@@ -1,0 +1,19 @@
+<%- include("partials/sidebar.ejs") %>
+<main>
+  <form action="/add-student" method="POST" aria-label="Add New Student">
+    <h1>Add New Student</h1>
+    <label for="student-name">Student Name</label>
+    <input type="text" id="student-name" name="name" required />
+
+    <label for="student-class">Class</label>
+    <select id="student-class" name="classId" required>
+      <option disabled selected value="">Select Class</option>
+      <% classes.forEach(function(classItem) { %>
+      <option value="<%= classItem.id %>"><%= classItem.name %></option>
+      <% }) %>
+    </select>
+
+    <button type="submit">Add Student</button>
+  </form>
+</main>
+<%- include("partials/footer.ejs") %>

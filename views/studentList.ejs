@@ -1,0 +1,68 @@
+<%- include("partials/sidebar.ejs") %>
+<main>
+  <h1>Student Fee Payments</h1>
+  <!-- Search Bar -->
+  <form action="/students/classId" method="GET" aria-label="Search or Select Class">
+    <% if (!locals.students && !locals.classId ) { %>
+      <label for="studentlist-class">Select Class:</label>
+      <select id="studentlist-class" name="classId" required>
+        <option value="" disabled selected>Select Class</option>
+        <% classes.forEach(function(classItem) { %>
+        <option value="<%= classItem.id %>"><%= classItem.name %></option>
+        <% }) %>
+      </select>
+      <br /><br />
+      <button type="submit" class="btn btn-primary">Submit</button>
+    <% } else { %>
+      <input type="hidden" name="classId" value="<%= classId %>">
+      <label for="studentlist-search" class="visually-hidden">Search by Name</label>
+      <input
+        type="text"
+        id="studentlist-search"
+        name="search"
+        placeholder="Search by Name"
+      />
+      <button type="submit">Search</button>
+    </form>
+    <section aria-label="Student Payment Table">
+      <table>
+        <thead>
+          <tr>
+          
+            <th>Name</th>
+            <th>Class</th>
+            <th>Total Fees</th>
+            <th>Amount Paid</th>
+            <th>Balance</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% students.forEach(student => { %>
+          <tr>
+            
+            <td><%= student.name %></td>
+            <td><%= student.class_name %></td>
+            <td>₦<%= Number(student.total_fees).toLocaleString() %></td>
+            <td>₦<%= Number(student.amount_paid).toLocaleString() %></td>
+            <td>
+              ₦<%= Number(student.total_fees - student.amount_paid).toLocaleString() %>
+            </td>
+            <td>
+              <a href="/students/<%= student.id %>/pay">Make Payment</a>
+              <button>
+                <a
+                  style="color: #ffffff"
+                  href="/students/<%= student.id %>/payment-history"
+                  >View History
+                </a>
+              </button>
+            </td>
+          </tr>
+          <% }) %>
+        </tbody>
+      </table>
+    </section>
+    <% } %>
+</main>
+<%- include("partials/footer.ejs") %>

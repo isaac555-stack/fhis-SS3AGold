@@ -1,0 +1,16 @@
+<%- include("partials/sidebar.ejs") %>
+<main>
+  <h1>Generate Class Fee Report</h1>
+  <form action="/students/pdf" method="GET" target="_blank" aria-label="Generate Class Fee Report">
+    <label for="receipt-class">Select Class:</label>
+    <select id="receipt-class" name="classId" required>
+      <option value="" disabled selected>Select Class</option>
+      <% classes.forEach(function(classItem) { %>
+      <option value="<%= classItem.id %>"><%= classItem.name %></option>
+      <% }) %>
+    </select>
+    <br /><br />
+    <button type="submit" class="btn btn-primary">Generate PDF</button>
+  </form>
+</main>
+<%- include("partials/footer.ejs") %>

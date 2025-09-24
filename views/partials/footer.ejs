@@ -1,0 +1,35 @@
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="/jquery-3.7.1.min.js"></script>
+
+
+
+<script>
+  const urlParams = new URLSearchParams(window.location.search)
+  const successMessage = urlParams.get('success')
+  const errorMessage = urlParams.get('error')
+
+  if (successMessage) {
+    Swal.fire({
+      icon: 'success',
+      title: 'Done!',
+      text: successMessage,
+      toast: true,
+      position: 'top-end',
+      timer: '5000',
+      showConfirmButton: false,
+      timerProgressBar: true
+    })
+  }
+
+  if (errorMessage) {
+    Swal.fire({
+      icon: 'error',
+      title: 'Oops',
+      text: errorMessage,
+    })
+  }
+</script>
+
+</body>
+
+</html>

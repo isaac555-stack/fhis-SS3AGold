@@ -1,0 +1,37 @@
+<%- include("partials/sidebar.ejs") %>
+<main>
+  <form action="/update-fees" method="POST" aria-label="Edit Automatic School Fees">
+    <h1>Edit Automatic School Fees</h1>
+    <table>
+      <thead>
+        <tr>
+          <th>Id</th>
+          <th>Class</th>
+          <th>Current Fees</th>
+          <th>New Fees</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% classes.forEach(classItem => { %>
+        <tr>
+          <td><%= classItem.id %></td>
+          <td><%= classItem.name %></td>
+          <td>₦<%= Number(classItem.total_fees).toLocaleString() %></td>
+          <td>
+            <label for="fee-<%= classItem.id %>" class="visually-hidden">New Fee for <%= classItem.name %></label>
+            <input
+              type="number"
+              id="fee-<%= classItem.id %>"
+              name="<%=classItem.id %>"
+              value="<%= classItem.total_fees %>"
+              required
+            />
+          </td>
+        </tr>
+        <% }); %>
+      </tbody>
+    </table>
+    <button type="submit">Update Fees</button>
+  </form>
+</main>
+<%- include("partials/footer.ejs") %>

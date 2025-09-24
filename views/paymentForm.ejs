@@ -1,0 +1,100 @@
+<%- include("./partials/sidebar.ejs") %>
+<main>
+  <h1>Make Payment for <%= student.name %></h1>
+  <form
+    action="/students/<%= student.id %>/pay"
+    method="POST"
+    aria-label="Make Payment"
+  >
+    <div class="form-grid">
+      <label for="amount-paid">Amount (₦)</label>
+      <input
+        type="number"
+        id="amount-paid"
+        name="amount_paid"
+        placeholder="Amount Paid by <%= student.name %> "
+        required
+      />
+      <label>Class</label>
+      <input
+        type="text"
+        value="<%= student.class_name || (classes.find(cls => cls.id === student.class_id)?.name) %>"
+        readonly
+        disabled
+      />
+      <input type="hidden" name="classId" value="<%= student.class_id %>" />
+      <label for="payment-method">Method</label>
+      <select id="payment-method" name="payment_method" required>
+        <option value="Cash">Cash</option>
+        <option value="Transfer">Transfer</option>
+        <option value="POS">POS</option>
+      </select>
+      <label for="payment-term">Term</label>
+      <input id="payment-term" name="term" readonly required />
+
+      <label for="payment-session">Session</label>
+      <input
+        type="text"
+        id="payment-session"
+        name="session"
+        readonly
+        required
+      />
+      <label for="payment-receipt">Receipt No</label>
+      <input
+        type="number"
+        id="payment-receipt"
+        name="reference_code"
+        placeholder="Receipt Number"
+        required
+      />
+      <label for="payment-remark">Remark</label>
+      <textarea
+        id="payment-remark"
+        name="note"
+        placeholder="Remark on the payment"
+        required
+      ></textarea>
+    </div>
+    <button type="submit">Submit Payment</button>
+  </form>
+</main>
+<%- include("partials/footer.ejs") %>
+
+
+
+
+<script>
+  // Dynamically set the session field to the current academic session
+  const sessionInput = document.getElementById("payment-session");
+  if (sessionInput) {
+    const now = new Date();
+    let year = now.getFullYear();
+    let nextYear = year + 1;
+    // Assume session starts in September; adjust as needed
+    if (now.getMonth() < 8) {
+      // Before September
+      year = year - 1;
+      nextYear = year + 1;
+    }
+    sessionInput.value = `${year}/${nextYear}`;
+  }
+
+  const termInput = document.getElementById("payment-term");
+  const now = new Date();
+
+  // Set term based on the current month
+  if (now.getMonth() < 3) {
+    // January to March
+    termInput.value = "1st Term";
+  } else if (now.getMonth() < 6) {
+    // April to June
+    termInput.value = "2nd Term";
+  } else if (now.getMonth() < 9) {
+    // July to September
+    termInput.value = "3rd Term";
+  } else {
+    // October to December
+    termInput.value = "1st Term";
+  }
+</script>

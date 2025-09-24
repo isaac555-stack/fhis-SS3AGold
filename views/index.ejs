@@ -1,0 +1,26 @@
+<%- include("partials/sidebar.ejs") %>
+<h1>Welcome to Shinelight Database Management System</h1>
+<div class="total-result">
+  <div>
+    <img src="/icons/users-round.svg" />
+    <p>Total Students</p>
+    <h2><%= totalStudents %></h2>
+  </div>
+  <div>
+    <img src="/icons/circle-dollar-sign.svg" />
+    <p>Total Payments</p>
+    <h2>₦<%= String(totalPayments) %></h2>
+  </div>
+  <div>
+    <img src="/icons/wallet-cards.svg" />
+    <p>Total Balance</p>
+    <h2>₦<%= Number(totalBalance).toLocaleString() %></h2>
+  </div>
+  <div>
+    <img src="/icons/coins.svg" />
+    <p>Total Fees</p>
+    <h2>₦<%= Number(totalFees).toLocaleString() %></h2>
+  </div>
+</div>
+
+<%- include("partials/footer.ejs") %>

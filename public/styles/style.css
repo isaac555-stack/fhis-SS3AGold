@@ -1,0 +1,302 @@
+/* styles.css - School Fees Management System */
+
+/* Visually hidden (screen-reader only) */
+.visually-hidden {
+  position: absolute !important;
+  height: 1px; width: 1px;
+  overflow: hidden;
+  clip: rect(1px, 1px, 1px, 1px);
+  white-space: nowrap;
+}
+
+body {
+  font-family: "League Spartan", sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #0e1a50;
+  color: rgba(255, 255, 255, 0.719);
+}
+
+/* Sidebar Styles */
+.sidebar img {
+  width: 17px;
+  margin: 0;
+}
+
+.sidebar {
+  text-align: center;
+  background-color: #070d29;
+  position: fixed;
+  top: 0;
+  height: 100vh;
+  max-width: 25%;
+  color: rgba(255, 255, 255, 0.747);
+  padding: 15px;
+}
+
+.sidebar div {
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
+  text-align: left;
+  border: none;
+  padding: 18px;
+  border-radius: 10px;
+  color: rgba(255, 255, 255, 0.719);
+  box-shadow: 0px 0px 7px rgba(0, 0, 0, 0.678);
+  background-color: none;
+  outline: 1px rgba(0, 0, 0, 0.116) solid;
+}
+
+.sidebar div:hover {
+  background-color: rgba(255, 255, 255, 0.062);
+  color: white;
+  scale: 1.025;
+}
+
+/* Active sidebar button */
+.sidebar a.active div,
+.sidebar div.active {
+  background-color: #1a2e93 !important;
+  color: #fff !important;
+  font-weight: bold;
+  box-shadow: 0 2px 10px rgba(52,152,219,0.15);
+  scale: 1.025;
+  padding: 20px;
+}
+
+/* Container Styles */
+
+.container {
+  background-color: #0e1a50;
+  text-align: center;
+  margin-left: 27%;
+}
+
+.welcome {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.welcome > div {
+  background-color: #0e1a50;
+  align-items: center;
+  justify-content: center;
+  color: white;
+
+  border-radius: 5px;
+  margin: 0;
+  font-size: larger;
+  padding: 20px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.678);
+}
+
+/* Payment Form */
+
+.form-grid {
+  display: grid;
+
+  backdrop-filter: blur(8px);
+  background-color: rgba(0, 0, 0, 0.1);
+  grid-template-columns: 1fr 3fr;
+  gap: 12px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.445);
+  max-width: 800px;
+  border-radius: 5px;
+  padding: 20px;
+  margin: 20px auto;
+}
+
+.form-grid label {
+  align-self: center;
+  font-weight: 700;
+  color: #fff;
+}
+
+input:focus,
+select:focus,
+textarea:focus,
+button:focus,
+a:focus {
+  outline: 2px solid #ffb300;
+  outline-offset: 2px;
+  box-shadow: 0 0 0 2px #fff2;
+}
+
+.form-grid select,
+.form-grid input,
+.form-grid textarea {
+  width: 100%;
+  padding: 15px;
+  background-color: #f8f9fa;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.644);
+  box-sizing: border-box;
+  border-radius: 4px;
+}
+
+input,
+button,
+select {
+  padding: 10px;
+  margin: 5px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.644);
+  border-radius: 5px;
+  background-color: rgba(255, 255, 255, 0.911);
+  border: none;
+}
+
+table {
+  width: 98%;
+  border-collapse: collapse;
+  margin: 10px;
+}
+
+table,
+th,
+td {
+  border: 1px ridge #727272d7;
+  background-color: white;
+}
+
+img {
+  width: 15%;
+  height: 15%;
+  margin: 10px;
+}
+
+th,
+td {
+  padding: 10px;
+  text-align: center;
+  color: black;
+}
+
+th {
+  background-color: #0156b1;
+  color: rgb(255, 255, 255);
+}
+
+#action {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.total-result {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+.total-result > div {
+  background-color: #0e1a50;
+  color: white;
+  border-radius: 5px;
+  margin: 20px;
+  font-size: larger;
+  width: 40%;
+  padding: 20px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.678);
+}
+
+button, a.btn, .btn {
+  background: #28a745;
+  color: white;
+  border: none;
+  cursor: pointer;
+  margin: 5px;
+  padding: 12px 18px;
+  font-size: 1rem;
+  border-radius: 5px;
+  transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+  text-decoration: none;
+  display: inline-block;
+}
+button:hover, a.btn:hover, .btn:hover {
+  background: #218838;
+  color: #fff;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.18);
+}
+
+svg {
+  width: 10px;
+}
+
+
+.btn {
+  padding: 12px;
+  margin: 2px;
+  text-decoration: none;
+  border-radius: 5px;
+  font-weight: bold;
+}
+.btn-primary {
+  background-color: #3498db;
+  color: white;
+}
+.btn-secondary {
+  background-color: #2ecc71;
+  color: white;
+}
+
+#deletebtn {
+  background-color: rgb(189, 9, 24);
+}
+#deletebtn:hover {
+  background-color: rgb(136, 14, 24);
+}
+
+a {
+  text-decoration: none;
+  color: rgb(51, 114, 196);
+}
+
+/* Mobile Devices */
+@media (min-width: 319px) and (max-width: 680px) {
+  .sidebar {
+    z-index: 3;
+    visibility: visible;
+    transition: transform 0.5s ease-in-out, visibility 0.5s ease-in-out;
+    max-width: 90%;
+  }
+
+  .container {
+    margin-left: 0;
+  }
+
+  .total-result {
+    flex-direction: column;
+  }
+  .total-result > div {
+    padding: 10px;
+    width: 95%;
+  }
+
+  .removeCanvas {
+    width: 35px;
+  }
+  .sidebar.open {
+    visibility: hidden;
+    transform: translateX(-100%);
+    z-index: 3;
+    color: rgb(255, 255, 255);
+  }
+  table {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+    width: 100%;
+  }
+}
+
+/* Section and heading spacing */
+main, section {
+  margin-bottom: 2rem;
+}
+h1, h2, h3 {
+  margin-top: 1.5rem;
+  margin-bottom: 1rem;
+}

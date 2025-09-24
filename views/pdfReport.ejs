@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Student Payment Report</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 40px; }
+    h1, h2 { text-align: center; }
+    .date { text-align: right; font-size: 0.95em; margin-bottom: 20px; }
+    table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+    th, td { border: 1px solid #333; padding: 8px; text-align: center; }
+    th { background: #f2f2f2; }
+    tr:nth-child(even) { background: #f9f9f9; }
+    .totals { font-weight: bold; background: #e0e0e0; }
+    .paid { color: green; font-weight: bold; }
+    .owing { color: red; font-weight: bold; }
+  </style>
+</head>
+<body>
+  <h1>Shinelight International School</h1>
+  <h2>Student Payment Report<% if (classId) { %> - <%= classNameMap[classId] %><% } else { %> (All Classes)<% } %></h2>
+  <div class="date">Date: <%= dateString %></div>
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Class</th>
+        <th>Fee</th>
+        <th>Paid</th>
+        <th>Balance</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% let totalExpected = 0, totalPaidAll = 0, totalBalance = 0; %>
+      <% students.forEach(function(student) { 
+        const totalPaid = paidMap[student.id] || 0;
+        const expectedFee = classMap[student.class_id.toString()] || 0;
+        let balance = expectedFee - totalPaid;
+        let status = 'OWING';
+        if (totalPaid > 0 && balance > 0) {
+          status = 'PART PAYMENT';
+        } else if (balance <= 0) {
+          status = 'PAID';
+        }
+        const className = classNameMap[student.class_id.toString()] || 'Unknown';
+        if (balance < 0) balance = 0;
+        totalExpected += expectedFee;
+        totalPaidAll += totalPaid;
+        totalBalance += balance;
+      %>
+      <tr>
+        <td><%= student.id %></td>
+        <td><%= student.name %></td>
+        <td><%= className %></td>
+        <td><%= expectedFee.toLocaleString(undefined, {minimumFractionDigits:2, maximumFractionDigits:2}) %></td>
+        <td><%= totalPaid.toLocaleString(undefined, {minimumFractionDigits:2, maximumFractionDigits:2}) %></td>
+        <td><%= balance.toLocaleString(undefined, {minimumFractionDigits:2, maximumFractionDigits:2}) %></td>
+        <td class="<%= status === 'PAID' ? 'paid' : 'owing' %>"><%= status %></td>
+      </tr>
+      <% }); %>
+      <tr class="totals">
+        <td colspan="3">Total </td>
+        <td><%= totalExpected.toLocaleString(undefined, {minimumFractionDigits:2, maximumFractionDigits:2}) %></td>
+        <td><%= totalPaidAll.toLocaleString(undefined, {minimumFractionDigits:2, maximumFractionDigits:2}) %></td>
+        <td><%= totalBalance.toLocaleString(undefined, {minimumFractionDigits:2, maximumFractionDigits:2}) %></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+</body>
+</html>

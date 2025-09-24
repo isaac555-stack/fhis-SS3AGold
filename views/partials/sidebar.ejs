@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Shinelight International School - Fees Management</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@100..900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/styles/style.css" />
+</head>
+
+<body>
+  <div class="section">
+    <div class="sidebar">
+      <h2>Shinelight Database Management System</h2>
+      <a href="/" class="<%= currentPath === '/' ? 'active' : '' %>">
+        <div>Dashboard<img src="/icons/right-arrow.svg" /></div>
+      </a>
+      <a href="/students" class="<%= currentPath.startsWith('/students') ? 'active' : '' %>">
+        <div>
+          Student Payment | History<img src="/icons/right-arrow.svg" />
+        </div>
+      </a>
+      <a href="/pdf" class="<%= currentPath === '/pdf' ? 'active' : '' %>">
+        <div>Generate PDF<img src="/icons/right-arrow.svg" /></div>
+      </a>
+      <a href="/edit-fees" class="<%= currentPath === '/edit-fees' ? 'active' : '' %>">
+        <div>Edit Class Fees<img src="/icons/right-arrow.svg" /></div>
+      </a>
+      <a href="/add-student" class="<%= currentPath === '/add-student' ? 'active' : '' %>">
+        <div>Add Student<img src="/icons/right-arrow.svg" /></div>
+      </a>
+      <a href="/view-student" class="<%= currentPath.startsWith('/view-student') ? 'active' : '' %>">
+        <div>Edit Student<img src="/icons/right-arrow.svg" /></div>
+      </a>
+      <a href="/classes" class="<%= currentPath.startsWith('/classes') ? 'active' : '' %>">
+        <div>Class Payment History<img src="/icons/right-arrow.svg" /></div>
+      </a>
+      <blockquote>Developed by Ziko Technologies</blockquote>
+    </div>
+
+    <div class="container">
+      <div class="logo">
+        <img src="/icons/brand.png" /><img src="/icons/Shinelight Logo.ico" />
+      </div>
+      

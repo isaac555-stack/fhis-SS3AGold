@@ -1,0 +1,37 @@
+<%- include("partials/sidebar.ejs") %>
+<main>
+  <h2>Payment History for <%= student.name %></h2>
+  <% if (payments.length === 0) { %>
+    <p>No payments yet.</p>
+  <% } else { %>
+    <section aria-label="Payment History Table">
+      <table>
+        <thead>
+          <tr>
+            <th>Date</th>
+            <th>Amount Paid</th>
+            <th>Method</th>
+            <th>Term</th>
+            <th>Session</th>
+            <th>Remark</th>
+            <th>Receipt No</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% payments.forEach(payment => { %>
+          <tr>
+            <td><%= new Date(payment.payment_date).toLocaleDateString() %></td>
+            <td>₦<%= Number(payment.amount_paid).toLocaleString() %></td>
+            <td><%= payment.payment_method %></td>
+            <td><%= payment.term %></td>
+            <td><%= payment.session %></td>
+            <td><%= payment.note %></td>
+            <td><%= payment.reference_code %></td>
+          </tr>
+          <% }) %>
+        </tbody>
+      </table>
+    </section>
+  <% } %>
+</main>
+<%- include("partials/footer.ejs") %>
