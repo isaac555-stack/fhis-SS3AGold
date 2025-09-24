@@ -31,7 +31,7 @@ body {
   top: 0;
   left: 0;
   height: 100vh;
-  max-width: 25%;
+  max-width: 27%;
   color: rgba(255, 255, 255, 0.747);
   padding: 20px 16px;
   overflow-y: auto;
@@ -77,7 +77,7 @@ body {
   display: flex;
   flex-direction: column;
   text-align: center;
-  margin-left: 26%;
+  margin-left: 28%;
   min-height: 100vh;
   padding: 20px;
   box-sizing: border-box;
