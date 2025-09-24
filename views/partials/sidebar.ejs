@@ -13,7 +13,7 @@
 
 <body>
   <div class="section">
-    <div class="sidebar">
+    <div id="sidebar" class="sidebar">
       <h2>Shinelight Database Management System</h2>
       <a href="/" class="<%= currentPath === '/' ? 'active' : '' %>">
         <div>Dashboard<img src="/icons/right-arrow.svg" /></div>
@@ -40,9 +40,14 @@
       </a>
       <blockquote>Developed by Ziko Technologies</blockquote>
     </div>
+    <div class="backdrop" id="backdrop"></div>
 
     <div class="container">
-      <div class="logo">
-        <img src="/icons/brand.png" /><img src="/icons/Shinelight Logo.ico" />
+      <div class="topbar">
+        <button class="menu-toggle" type="button" aria-label="Open menu" aria-controls="sidebar" aria-expanded="false">Menu</button>
+        <div class="logo">
+          <img src="/icons/brand.png" />
+          <img src="/icons/Shinelight Logo.ico" />
+        </div>
       </div>
       
