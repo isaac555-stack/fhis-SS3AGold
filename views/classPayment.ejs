@@ -14,7 +14,7 @@
       <button type="submit" class="btn btn-primary">Submit</button>
     </form>
   </section>
-  <% if (locals.students) { %>
+  <% if (locals.students && students.length > 0) { %>
   <section aria-label="Class Payment Table">
     <table>
       <thead>
@@ -57,6 +57,10 @@
       </tbody>
     </table>
   </section>
+  <% } else if (locals.students) { %>
+    <div role="alert" aria-live="polite" style="margin: 1rem 0; background: #fff; color: #111; padding: 12px; border-left: 4px solid #bd0918; border-radius: 4px;">
+      No students have been added to this class yet.
+    </div>
   <% } %>
 </main>
 <%- include("partials/footer.ejs") %>
