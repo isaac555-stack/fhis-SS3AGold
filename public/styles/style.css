@@ -161,6 +161,12 @@ a:focus {
   justify-content: space-around;
   gap: 12px;
   margin-bottom: 16px;
+  position: sticky;
+  top: 0;
+  background-color: var(--bg);
+  padding: 10px 16px;
+  z-index: 950; /* below sidebar (1000), above backdrop (900) */
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
 .logo {
   display: flex;
@@ -168,7 +174,7 @@ a:focus {
   gap: 8px;
 }
 .logo img {
-  height: 80px;
+  height: 56px;
   width: auto;
 }
 
@@ -471,15 +477,56 @@ h3 {
     grid-template-columns: 1fr;
   }
 
-  table {
-    overflow-x: auto;
+  .topbar {
+    padding: 8px 12px;
+    justify-content: space-between;
+    padding-top: calc(8px + env(safe-area-inset-top));
+  }
+  .logo {
+    gap: 6px;
+  }
+  .logo img {
+    height: 42px;
+  }
+  input,
+  select,
+  textarea,
+  button {
+    min-height: 44px; /* recommended mobile minimum */
+  }
+  form [type="submit"] {
     width: 100%;
+  }
+
+
+.table-form {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  width: 100%;
+}
+
+
+  .table-form table {
+    white-space: nowrap;
+    min-width: 640px;
+    margin: 0;
+  }
+
+  h1 {
+    font-size: 1.4rem;
+  }
+  h2 {
+    font-size: 1.2rem;
+  }
+  h3 {
+    font-size: 1.1rem;
   }
 }
 
 /* ================================
    Reduced motion
    ================================ */
+
 @media (prefers-reduced-motion: reduce) {
   * {
     animation-duration: 0.01ms !important;
