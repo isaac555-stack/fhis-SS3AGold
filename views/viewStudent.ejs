@@ -55,41 +55,43 @@
     <button type="submit">Search</button>
   </form>
   <section aria-label="Edit Student Table">
-    <table>
-      <thead>
-        <tr>
-          <th>ID</th>
-          <th>Name</th>
-          <th>Class</th>
-          <th>Actions</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% students.forEach(student => { %>
-        <tr>
-          <td><%= student.id%></td>
-          <td><%= student.name %></td>
-          <td><%= student.class_name %></td>
-          <td id="action">
-            <a href="/edit-student/<%= student.id %>">Edit</a>
-            <form
-              action="/delete-student/<%= student.id %>"
-              method="POST"
-              style="display: inline"
-            >
-              <button
-                type="submit"
-                id="deletebtn"
-                onclick="return confirm('Are you sure? It is irreversible!')"
+    <div class="table-form">
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Class</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% students.forEach(student => { %>
+          <tr>
+            <td><%= student.id%></td>
+            <td><%= student.name %></td>
+            <td><%= student.class_name %></td>
+            <td id="action">
+              <a href="/edit-student/<%= student.id %>">Edit</a>
+              <form
+                action="/delete-student/<%= student.id %>"
+                method="POST"
+                style="display: inline"
               >
-                Delete
-              </button>
-            </form>
-          </td>
-        </tr>
-        <% }) %>
-      </tbody>
-    </table>
+                <button
+                  type="submit"
+                  id="deletebtn"
+                  onclick="return confirm('Are you sure? It is irreversible!')"
+                >
+                  Delete
+                </button>
+              </form>
+            </td>
+          </tr>
+          <% }) %>
+        </tbody>
+      </table>
+    </div>
   </section>
   <% } %>
 </main>

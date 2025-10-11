@@ -2,9 +2,10 @@
 <main>
   <h2>Payment History for <%= student.name %></h2>
   <% if (payments.length === 0) { %>
-    <p>No payments yet.</p>
+  <p>No payments yet.</p>
   <% } else { %>
-    <section aria-label="Payment History Table">
+  <section aria-label="Payment History Table">
+    <div class="table-form">
       <table>
         <thead>
           <tr>
@@ -31,7 +32,8 @@
           <% }) %>
         </tbody>
       </table>
-    </section>
+    </div>
+  </section>
   <% } %>
 </main>
 <%- include("partials/footer.ejs") %>

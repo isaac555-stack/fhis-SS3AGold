@@ -2,7 +2,11 @@
 <main>
   <h1>View Class Payments</h1>
   <section>
-    <form action="/classes/:id" method="GET" aria-label="Select Class for Payment View">
+    <form
+      action="/classes/:id"
+      method="GET"
+      aria-label="Select Class for Payment View"
+    >
       <label for="class-payment-class">Select Class:</label>
       <select id="class-payment-class" name="classId" required>
         <option value="" disabled selected>Select Class</option>
@@ -16,51 +20,58 @@
   </section>
   <% if (locals.students && students.length > 0) { %>
   <section aria-label="Class Payment Table">
-    <table>
-      <thead>
-        <tr>
-         
-          <th>Name</th>
-          <th>Class</th>
-          <th>Total Fees</th>
-          <th>Amount Paid</th>
-          <th>Balance</th>
-          <th>Status</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% students.forEach(student => { %>
-        <tr>
-          
-          <td><%= student.name %></td>
-          <td><%= student.class_name %></td>
-          <td>₦<%= Number(student.total_fees).toLocaleString() %></td>
-          <td>₦<%= Number(student.amount_paid).toLocaleString() %></td>
-          <td>
-            ₦<%= Number(student.total_fees-student.amount_paid).toLocaleString() %>
-          </td>
-          <%if (student.total_fees===student.amount_paid){%>
-          <td>
-            FULL PAYMENT
-          </td>
-          <% }else if(student.total_fees>student.amount_paid && student.amount_paid>0){%>
+    <div class="table-form">
+      <table>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Class</th>
+            <th>Total Fees</th>
+            <th>Amount Paid</th>
+            <th>Balance</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% students.forEach(student => { %>
+          <tr>
+            <td><%= student.name %></td>
+            <td><%= student.class_name %></td>
+            <td>₦<%= Number(student.total_fees).toLocaleString() %></td>
+            <td>₦<%= Number(student.amount_paid).toLocaleString() %></td>
             <td>
-              PART PAYMENT
+              ₦<%=
+              Number(student.total_fees-student.amount_paid).toLocaleString() %>
             </td>
+            <%if (student.total_fees===student.amount_paid){%>
+            <td>FULL PAYMENT</td>
+            <% }else if(student.total_fees>student.amount_paid &&
+            student.amount_paid>0){%>
+            <td>PART PAYMENT</td>
             <% }else {%>
-              <td>
-                NO PAYMENT
-              </td>
-              <% } %>
-        </tr>
-        <% }) %>
-      </tbody>
-    </table>
+            <td>NO PAYMENT</td>
+            <% } %>
+          </tr>
+          <% }) %>
+        </tbody>
+      </table>
+    </div>
   </section>
   <% } else if (locals.students) { %>
-    <div role="alert" aria-live="polite" style="margin: 1rem 0; background: #fff; color: #111; padding: 12px; border-left: 4px solid #bd0918; border-radius: 4px;">
-      No students have been added to this class yet.
-    </div>
+  <div
+    role="alert"
+    aria-live="polite"
+    style="
+      margin: 1rem 0;
+      background: #fff;
+      color: #111;
+      padding: 12px;
+      border-left: 4px solid #bd0918;
+      border-radius: 4px;
+    "
+  >
+    No students have been added to this class yet.
+  </div>
   <% } %>
 </main>
 <%- include("partials/footer.ejs") %>

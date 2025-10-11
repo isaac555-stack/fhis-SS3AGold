@@ -1,19 +1,21 @@
 <%- include("partials/sidebar.ejs") %>
 <main>
+  <h1>Edit Student</h1>
   <form action="/update-student/<%= student.id %>" method="POST" aria-label="Edit Student">
-    <h2>Edit Student</h2>
-    <label for="edit-student-name">Student Name</label>
-    <input type="text" id="edit-student-name" name="name" value="<%= student.name %>" required />
+    <div class="form-grid">
+      <label for="edit-student-name">Student Name</label>
+      <input type="text" id="edit-student-name" name="name" value="<%= student.name %>" placeholder="e.g. John Doe" autocomplete="name" required />
 
-    <label for="edit-student-class">Class</label>
-    <select id="edit-student-class" name="classId" required>
-      <option selected disabled value="">Select Class</option>
-      <% classes.forEach(function(classItem) { %>
-      <option value="<%= classItem.id %>"><%= classItem.name %></option>
-      <% }) %>
-    </select>
+      <label for="edit-student-class">Class</label>
+      <select id="edit-student-class" name="classId" required>
+        <option disabled value="">Select Class</option>
+        <% classes.forEach(function(classItem) { %>
+        <option value="<%= classItem.id %>" <%= (classItem.id === (student.class_id || student.classId)) ? 'selected' : '' %>><%= classItem.name %></option>
+        <% }) %>
+      </select>
+    </div>
 
-    <button type="submit">Update Student</button>
+    <button class="btn btn-primary" type="submit">Update Student</button>
   </form>
 </main>
 <%- include("partials/footer.ejs") %>
